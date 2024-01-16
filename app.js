@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const helmet = require('helmet');
 const { ErrorResponseObject } = require('./common/http');
 const routes = require('./routes');
