@@ -1,11 +1,14 @@
 const { Router } = require('express');
 const { SuccessResponseObject } = require('../common/http');
+
+const login = require('./login.route');
 const user = require('./user.route');
+const router = Router();
 
-const r = Router();
+router.use('/login', login);
 
-r.use('/user', user);
+router.use('/user', user);
 
-r.get('/', (req, res) => res.json(new SuccessResponseObject('Vercel deployment success')));
+router.get('/', (req, res) => res.json(new SuccessResponseObject('Vercel deployment success')));
 
-module.exports = r;
+module.exports = router;
