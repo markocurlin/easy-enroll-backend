@@ -2,11 +2,6 @@ const { Router } = require('express');
 
 const router = Router();
 
-router.get('/', (req, res) => res.json(
-    {
-        userName: "William Lozano Kurir",
-        userId: 69
-    }
-));
+router.get('/', (req, res) => res.json(new SuccessResponseObject('demo path live 🚀')));
 
 module.exports = router;
