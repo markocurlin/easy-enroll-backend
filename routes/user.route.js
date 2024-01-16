@@ -2,7 +2,7 @@ const { Router } = require('express');
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/user', async (req, res) => {
     res.status(200).send(
         {
             userName: "William Lozano Kurir",

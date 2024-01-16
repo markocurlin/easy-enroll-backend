@@ -16,11 +16,6 @@ Install dependencies
 cd easy-enroll-server
 npm install
 ```
-Build and run the project
-```
-npm run dev
-```
-  Navigate to `http://localhost:8000`
 
 ## Project Structure
 
