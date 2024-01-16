@@ -27,7 +27,7 @@ npm install
 ├── node_modules/
 ├── package.json
 ├── routes/
-│   ├── demo.route.js
+│   ├── user.route.js
 │   └── index.js
 ├── services/
 ├── common/
@@ -52,7 +52,7 @@ mostly express route handlers
 #### `routes/`
 
 - `index.js` – bootstraps all routes. new namespaces should always be registered here
-- `demo.route.js` – sample standalone route
+- `user.route.js` – sample standalone route
 
 #### `services/`
 

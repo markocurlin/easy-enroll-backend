@@ -1,14 +1,14 @@
 const app = require('../../app');
 const request = require('supertest');
 
-describe('Demo Endpoint', () => {
-  it('GET /demo', async () => {
-    const response = await request(app).get('/demo');
+describe('User Endpoint', () => {
+  it('GET /user', async () => {
+    const response = await request(app).get('/user');
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
       success: true,
-      message: 'demo path live 🚀',
+      message: 'user path live 🚀',
       data: null
     });
   });
