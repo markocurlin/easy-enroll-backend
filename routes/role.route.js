@@ -1,3 +1,4 @@
+/*
 const { Router } = require('express');
 const roleModel = require('../models/role');
 
@@ -59,4 +60,4 @@ router.delete('/:name', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = router;*/

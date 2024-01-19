@@ -8,7 +8,7 @@ const router = Router();
 
 router.use('/login', login);
 router.use('/user', user);
-router.use('/role', role);
+//router.use('/role', role);
 
 router.get('/', (req, res) => res.json(new SuccessResponseObject('Vercel deployment success')));
 
