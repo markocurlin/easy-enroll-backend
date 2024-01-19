@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-//const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 const { ErrorResponseObject } = require('./common/http');
 const routes = require('./routes');
 
