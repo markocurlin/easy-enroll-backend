@@ -17,7 +17,10 @@ app.use('/', routes);
 
 app.all('*', (req, res) => res.status(404).json(new ErrorResponseObject('route not defined')));
 
-mongoose.connect(process.env.DATABASE_URI);
+const DATABASE_URI = "mongodb+srv://mcurli00:fesb1234@cluster0.cig6cob.mongodb.net/easy-enroll-db"
+
+//mongoose.connect(process.env.DATABASE_URI);
+mongoose.connect(DATABASE_URI);
 
 const db = mongoose.connection;
 
