@@ -1,53 +1,95 @@
 const { Router } = require('express');
-const { SuccessResponseObject } = require('../common/http');
+const userModel = require('../models/user');
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    // Get all users from database
+router.get('/', async (req, res) => {
+    try {
+        const users = await userModel.find({});
 
-    res.json(new SuccessResponseObject('user path live'))
-});
-
-/*
-router.get('/:username', (req, res) => {
-    const username = req.params.username;
-
-    // Find in database, use username
-    const user = "";
-
-    if (user) {
-        res.json(user);
-    } else {
-        res.status(404).json({
-            message: 'User not found.'
-        });
+        res.status(200).json(users);
+    } catch(error) {
+        res.status(400).json({error: error.message });
     }
 });
-*/
 
-router.post('/', (req, res) => {
-    const user = req.body;
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
 
-    // Insert in database
+    try {
+        const user = await userModel.findById(id);
 
-    res.status(201).json(user);
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({error: 'User not found.' });
+        }
+    } catch(error) {
+        res.status(400).json({error: error.message})
+    }
 });
 
-/*
-router.delete('/:username', (req, res) => {
+router.get('/:username', async (req, res) => {
     const username = req.params.username;
 
-    // Find in database, use username
-    // Delete
-    const user = "";
+    try {
+        const user = await userModel.findOne({ username: username });
 
-    // Check
-
-    res.status(200).json({
-        message: 'User deleted successfully'
-    });
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({error: 'User not found.' });
+        }
+    } catch(error) {
+        res.status(400).json({error: error.message})
+    }
 });
-*/
+
+router.post('/', async (req, res) => {
+    const user = req.body;
+
+    const newUser = new userModel({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        role: user.role
+    });
+
+    try {
+        await newUser.save().then(savedUser => {
+            console.log('User saved:', savedUser);
+        })
+
+        res.status(201).json(newUser);
+    } catch(error) {
+        res.status(400).json({error: error.message})
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        await userModel.findById(id);
+
+        res.status(200).json('User deleted successfully');
+    } catch(error) {
+        res.status(400).json({error: error.message})
+    }
+});
+
+router.delete('/:username', async (req, res) => {
+    const username = req.params.username;
+
+    try {
+        await userModel.findOneAndDelete({ username: username });
+
+        res.status(200).json('User deleted successfully');
+    } catch(error) {
+        res.status(400).json({error: error.message})
+    }
+});
 
 module.exports = router;
