@@ -5,16 +5,14 @@ const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-        //const users = await userModel.find({});
+        const users = await userModel.find({});
 
-        //res.status(200).json(users);
-        res.status(200).json("Okk");
+        res.status(200).json(users);
     } catch(error) {
         res.status(400).json({error: error.message });
     }
 });
 
-/*
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
 
@@ -93,5 +91,5 @@ router.delete('/:username', async (req, res) => {
         res.status(400).json({error: error.message})
     }
 });
-*/
+
 module.exports = router;

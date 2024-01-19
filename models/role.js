@@ -1,4 +1,3 @@
-/*
 const mongoose = require('mongoose');
 
 const roleModel = new mongoose.Schema(
@@ -13,4 +12,3 @@ const roleModel = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('Role', roleModel);
-*/
