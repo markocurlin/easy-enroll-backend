@@ -13,11 +13,11 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:name', async (req, res) => {
-    const name = req.params.name;
+router.get('/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
 
     try {
-        const role = await roleModel.findOne({ name: name });
+        const role = await roleModel.findById(id);
 
         if (role) {
             res.status(200).json(role);
@@ -47,11 +47,11 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.delete('/:name', async (req, res) => {
-    const name = req.params.name;
+router.delete('/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
 
     try {
-        await roleModel.findOneAndDelete({ name: name });
+        await roleModel.findByIdAndDelete(id);
 
         res.status(200).json('Role deleted successfully');
     } catch(error) {

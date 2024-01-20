@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 const userModel = new mongoose.Schema(
   {
+    _id: {
+      type: Number,
+      required: true,
+    },
     firstName: {
       type: String,
       required: true,
@@ -31,7 +35,6 @@ const userModel = new mongoose.Schema(
       required: true,
     }
   },
-  { versionKey: false }
 );
 
 module.exports = mongoose.model('User', userModel);
