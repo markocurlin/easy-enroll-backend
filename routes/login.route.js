@@ -1,35 +1,37 @@
 const { Router } = require('express');
+const userModel = require('../models/user');
 
 const router = Router();
 
-router.post('/', (req, res) => {
+router.post('/',  async (req, res) => {
     const user = req.body;
 
-    // Get user from database
-    /*
-    let userDb;
+    try {
+        const userDb = await userModel.findOne({ username: user.username });
 
-    if (userDb) {
-        let isUserValid = user.password === userDb.password;
-        
-        if (isUserValid) {
-            res.status(200).json({
-                id: userDb.id,
-                username: userDb.username,
-                message: 'Login successful'
-            });
+        if (userDb) {
+            let isUserValid = user.password === userDb.password;
+
+            if (isUserValid) {
+                res.status(200).json({
+                    id: userDb._id,
+                    firstName: userDb.firstName,
+                    lastName: userDb.lastName,
+                    username: userDb.username,
+                    email: userDb.email,
+                    role: userDb.role,
+                });
+            } else {
+                res.status(401).json({
+                    message: 'Invalid password.'
+                });
+            }
         } else {
-            res.status(401).json({
-                message: 'Invalid password.'
-            });
+            res.status(404).json({error: 'User not found.' });
         }
-    } else {
-        res.status(404).json({
-            message: 'User not found.'
-        });
+    } catch(error) {
+        res.status(400).json({error: error.message})
     }
-    */
-    res.status(201).json(user);
 });
 
 module.exports = router;
