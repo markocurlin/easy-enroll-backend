@@ -30,22 +30,6 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.get('/:username', async (req, res) => {
-    const username = req.params.username;
-
-    try {
-        const user = await userModel.findOne({ username: username });
-
-        if (user) {
-            res.status(200).json(user);
-        } else {
-            res.status(404).json({error: 'User not found.' });
-        }
-    } catch(error) {
-        res.status(400).json({error: error.message})
-    }
-});
-
 router.post('/', async (req, res) => {
     const user = req.body;
 
@@ -78,24 +62,25 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
+    const user = req.body;
+
+    try {
+        let editedUser = await userModel.updateOne(id, user);
+
+        res.status(200).json(editedUser);
+    } catch(error) {
+        res.status(400).json({error: error.message})
+    }
+});
+
 router.delete('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
 
     try {
         await userModel.findByIdAndDelete(id);
         await presenceModel.findOneAndDelete({ studentId: id });
-
-        res.status(200).json('User deleted successfully');
-    } catch(error) {
-        res.status(400).json({error: error.message})
-    }
-});
-
-router.delete('/:username', async (req, res) => {
-    const username = req.params.username;
-
-    try {
-        await userModel.findOneAndDelete({ username: username });
 
         res.status(200).json('User deleted successfully');
     } catch(error) {
