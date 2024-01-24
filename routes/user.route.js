@@ -48,7 +48,11 @@ router.get('/:username', async (req, res) => {
 router.post('/', async (req, res) => {
     const user = req.body;
 
+    const lastUser = await userModel.findOne({}, {}, { sort: { '_id': -1 } });
+    let nextId = lastUser._id + 1;
+
     const newUser = new userModel({
+        _id: nextId,
         firstName: user.firstName,
         lastName: user.lastName,
         username: user.username,
@@ -60,7 +64,7 @@ router.post('/', async (req, res) => {
     try {
         await newUser.save().then(savedUser => {
             console.log('User saved:', savedUser);
-        })
+        });
 
         res.status(201).json(newUser);
     } catch(error) {

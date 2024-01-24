@@ -9,10 +9,10 @@ db.getCollection('users').insertMany([
 ]);
 
 db.getCollection('presences').insertMany([
-  { _id: 2001, studentId: 1002, present: false },
-  { _id: 2002, studentId: 1003, present: false },
-  { _id: 2003, studentId: 1004, present: false },
-  { _id: 2004, studentId: 1005, present: false }
+  { studentId: 1002, present: false },
+  { studentId: 1003, present: false },
+  { studentId: 1004, present: false },
+  { studentId: 1005, present: false }
 ]);
 
 const userCollection = db.getCollection('users').find({});
