@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 
 const presenceModel = new mongoose.Schema(
   {
-    _id: {
-      type: Number,
-      required: true,
-    },
     studentId: {
       type: Number,
       required: true,
@@ -15,6 +11,9 @@ const presenceModel = new mongoose.Schema(
       required: true,
     }
   },
+  {
+    versionKey: false
+  }
 );
 
 module.exports = mongoose.model('Presence', presenceModel);

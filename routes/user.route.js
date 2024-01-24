@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const userModel = require('../models/user');
+const presenceModel = require('../models/presence');
 
 const router = Router();
 
@@ -62,9 +63,14 @@ router.post('/', async (req, res) => {
     });
 
     try {
-        await newUser.save().then(savedUser => {
-            console.log('User saved:', savedUser);
+        await newUser.save();
+
+        const newPresence = new presenceModel({
+            studentId: nextId,
+            present: false
         });
+
+        await newPresence.save();
 
         res.status(201).json(newUser);
     } catch(error) {
