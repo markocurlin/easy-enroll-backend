@@ -82,7 +82,8 @@ router.delete('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
 
     try {
-        await userModel.findById(id);
+        await userModel.findByIdAndDelete(id);
+        await presenceModel.findOneAndDelete({ studentId: id });
 
         res.status(200).json('User deleted successfully');
     } catch(error) {
