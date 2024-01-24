@@ -31,7 +31,7 @@ const userModel = new mongoose.Schema(
       required: true,
     },
     role: {
-      type: Number,
+      type: String,
       required: true,
     }
   },

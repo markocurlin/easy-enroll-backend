@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-        const users = await userModel.find({});
+        const users = await userModel.find({}, { password: 0 });
 
         res.status(200).json(users);
     } catch(error) {

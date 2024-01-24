@@ -8,7 +8,7 @@ router.post('/',  async (req, res) => {
     const user = req.body;
 
     try {
-        const userDb = await userModel.findOne({ username: user.username, role: 1101 });
+        const userDb = await userModel.findOne({ username: user.username, role: 1102 });
 
         if (userDb) {
             let isUserValid = user.password === userDb.password;
