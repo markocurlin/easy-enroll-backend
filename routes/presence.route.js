@@ -38,9 +38,7 @@ router.post('/', async (req, res) => {
     });
 
     try {
-        await newPresence.save().then(savedPresence => {
-            console.log('Presence saved:', savedPresence);
-        })
+        await newPresence.save();
 
         res.status(201).json(newPresence);
     } catch(error) {
@@ -48,7 +46,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/update/:studentId', async (req, res) => {
+router.put('/update/:studentId', async (req, res) => {
     const studentId = parseInt(req.params.studentId);
     const isPresent = req.body.present;
 
@@ -59,7 +57,7 @@ router.post('/update/:studentId', async (req, res) => {
 
         await presenceModel.updateOne({ studentId: studentId }, { $set: student });
 
-        res.status(201).json(student);
+        res.status(200).json(student);
     } catch(error) {
         res.status(400).json({error: error.message})
     }
