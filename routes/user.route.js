@@ -67,7 +67,7 @@ router.put('/:id', async (req, res) => {
     const user = req.body;
 
     try {
-        let editedUser = await userModel.updateOne(id, user);
+        let editedUser = await userModel.findByIdAndUpdate(id, user);
 
         res.status(200).json(editedUser);
     } catch(error) {
