@@ -63,4 +63,16 @@ router.put('/update/:studentId', async (req, res) => {
     }
 });
 
+router.delete('/:studentId', async (req, res) => {
+    const studentId = parseInt(req.params.studentId);
+
+    try {
+        await presenceModel.findOneAndDelete({ studentId: studentId });
+
+        res.status(200).json('User deleted successfully');
+    } catch(error) {
+        res.status(400).json({error: error.message})
+    }
+});
+
 module.exports = router;

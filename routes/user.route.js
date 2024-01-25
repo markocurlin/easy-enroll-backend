@@ -18,7 +18,7 @@ router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
 
     try {
-        const user = await userModel.findById(id);
+        const user = await userModel.findById(id, { password: 0 });
 
         if (user) {
             res.status(200).json(user);
