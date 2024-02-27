@@ -30,6 +30,9 @@ npm install
 ├── package.json
 ├── routes/
 │   ├── user.route.js
+|   ├── login-mobile.route.js
+|   ├── login.route.js
+|   ├── presence.route.js
 │   └── index.js
 ├── services/
 ├── common/
@@ -43,19 +46,10 @@ npm install
 
 Express app entry point
 
-#### `config/`
-
-for configuration stuff... for example, database connection setup
-
-#### `controllers/`
-
-mostly express route handlers
-
 #### `routes/`
 
 - `index.js` – bootstraps all routes. new namespaces should always be registered here
-- `user.route.js` – sample standalone route
-
-#### `services/`
-
-for "external" services (e.g. a weather.service.js file for interacting with darksky API)
+- `user.route.js` – route for handling users
+- `login-mobile.route.js` – login route for mobile app users
+- `login.route.js` – login route for web app users
+- `presence.route.js` – route for handling presences
