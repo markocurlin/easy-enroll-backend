@@ -1,9 +1,11 @@
 # EasyEnroll Server
+EasyEnroll Server is application that handles user accounts and roles. It serves as a communication bridge between ESP32 devices, database, React web app, and React Native mobile app.
 
 ## Requirements
 
-Install [Node.js](https://nodejs.org/en/)
-Install [Express.js](https://expressjs.com/)
+- [Node.js](https://nodejs.org/en/)
+- [Express.js](https://expressjs.com/)
+- [Vercel](https://vercel.com/)
 
 ## Getting started
 
